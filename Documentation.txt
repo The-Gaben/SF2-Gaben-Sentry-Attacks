@@ -1,0 +1,17 @@
+// =============================================================
+// 		THE GABEN'S SENTRY ATTACKS
+// =============================================================
+
+// This subplugin adds the ability for bosses to place sentries in attacks.
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------
+// "attacks_deploy_sentry" - Boolean (0/1) - Determines if the sentry attack functionality should be enabled. 
+// Requires atleast one attack with attack_type 7, and must be outside the attack arrays.
+
+// -----------------------------------------------------------------------------------------------------------------------------------------------------
+// "attack_sentry_level" - Integer - Determines the level of the sentry. Defaults to 1.
+// "attacks_sentry_mini" - Boolean (0/1) - Determines if the sentry should be a mini sentry.
+// "attacks_sentry_disposable" - Boolean (0/1) - Determines if the sentry should be a disposable sentry like in MvM.
+// "attacks_deploy_sentry_delay" - Float - Sets how long before the sentry should spawn in. Defaults to 0.1.
+// "attacks_deploy_sentry_lifetime" - Float - Sets how long in seconds the sentry should last before destroying itself. Defaults to 5.0.
+// "attacks_deploy_sentry_x_offset" - Float - Sets how far forward away from the boss should the sentry spawn. Defaults to 10.0.

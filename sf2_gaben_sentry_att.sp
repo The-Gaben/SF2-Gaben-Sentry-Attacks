@@ -4,7 +4,6 @@
 #include <sdkhooks>
 #include <tf2>
 #include <tf2_stocks>
-#include <morecolors>
 
 
 bool g_bSlenderAttackDeploySentry[MAX_BOSSES];

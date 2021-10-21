@@ -10,6 +10,7 @@
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------
 // "attack_sentry_level" - Integer - Determines the level of the sentry. Defaults to 1.
+// "attack_sentry_team" - Int - Determines the team of the spawned sentry. Defaults to 3 (blue team).
 // "attacks_sentry_mini" - Boolean (0/1) - Determines if the sentry should be a mini sentry.
 // "attacks_sentry_disposable" - Boolean (0/1) - Determines if the sentry should be a disposable sentry like in MvM.
 // "attacks_deploy_sentry_delay" - Float - Sets how long before the sentry should spawn in. Defaults to 0.1.

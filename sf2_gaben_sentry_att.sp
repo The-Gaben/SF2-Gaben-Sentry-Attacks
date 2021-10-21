@@ -13,6 +13,8 @@ bool g_bSlenderAttackSentryIsDisposable[MAX_BOSSES];
 float g_fSlenderAttackSentryDelay[MAX_BOSSES];
 float g_fSlenderAttackSentryLifetime[MAX_BOSSES];
 float g_fSlenderAttackSentryVectorXOffset[MAX_BOSSES];
+int g_iSlenderAttackSentryTeam[MAX_BOSSES];
+
 
 
 public Plugin myinfo =
@@ -20,7 +22,7 @@ public Plugin myinfo =
 	name = "[SF2]The Gaben's Attack Sentries",
 	description = "Now ur bosses can be their own engineers",
 	author = "The Gaben",
-	version = "1.0.0",
+	version = "1.0.1",
 	url = "http://steamcommunity.com/profiles/76561198075611624/"
 };
 
@@ -37,6 +39,7 @@ public void SF2_OnBossAdded(int iBossIndex)
 	
 	g_bSlenderAttackDeploySentry[iBossIndex] = view_as<bool>(SF2_GetBossProfileNum(sProfile, "attacks_deploy_sentry", 0));
 	g_iSlenderAttackSentryLevel[iBossIndex] = view_as<int>(SF2_GetBossProfileNum(sProfile, "attack_sentry_level", 1));
+	g_iSlenderAttackSentryTeam[iBossIndex] = view_as<int>(SF2_GetBossProfileNum(sProfile, "attack_sentry_team", 3));
 	g_bSlenderAttackSentryIsMini[iBossIndex] = view_as<bool>(SF2_GetBossProfileNum(sProfile, "attacks_sentry_mini", 0));
 	g_bSlenderAttackSentryIsDisposable[iBossIndex] = view_as<bool>(SF2_GetBossProfileNum(sProfile, "attacks_sentry_disposable", 0));
 	g_fSlenderAttackSentryDelay[iBossIndex] = view_as<float>(SF2_GetBossProfileFloat(sProfile, "attacks_deploy_sentry_delay", 0.1));
@@ -90,16 +93,6 @@ public Action Timer_SF2DestroySentry(Handle timer, any entref)
 }
 
 
-public Action Timer_SF2KillEdictExt(Handle timer, any entref)
-{
-	int ent = EntRefToEntIndex(entref);
-	if (!IsValidEdict(ent)) return Plugin_Stop;
-	
-	RemoveEdict(ent);
-
-	return Plugin_Stop;
-}
-
 // Original code by Pelipoika, slightly modified by The Gaben
 stock int SF2_SpawnSentry(int iBossIndex, float Position[3], float Angle[3], int level, bool mini=false, bool disposable=false, int flags=4)
 {
@@ -111,7 +104,7 @@ stock int SF2_SpawnSentry(int iBossIndex, float Position[3], float Angle[3], int
 
 	if(!IsValidEntity(sentry)) return 0;
 
-	int iTeam = 3;
+	int iTeam = g_iSlenderAttackSentryTeam[iBossIndex];
 
 //	SetEntPropEnt(sentry, Prop_Send, "m_hBuilder", builder);
 
